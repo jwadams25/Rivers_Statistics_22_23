@@ -1,0 +1,87 @@
+---
+title: "2_2_Build_Your_Own_Least_Squares_Regression"
+author: "YOUR NAME"
+output: 
+  github_document:
+    toc: true
+    toc_depth: 3
+---
+
+# Overview
+
+Now that you've built a baseline understanding of how to build least squares regressions here on Posit, you will apply your new skills to a new dataset.
+
+***Start by changing YOUR NAME next to where it says author above.***
+
+# Goals
+
+***By the end of this tutorial you should be able to...***
+
+1.  Build a scatter plot that has a linear model.
+
+2.  Generate the equation of the linear model.
+
+3.  Interpret the linear regression model.
+
+4.  Add design elements to the scatter plot to improve the labels, colors, and alpha.
+
+# Libraries
+
+## **Opening Tasks and Questions - Run the following code chunk**
+
+```{r Libraries, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(knitr)
+```
+
+# The Question you will explore:
+
+### "Are textbooks at UCLA's bookstore overpriced in relation to the same ones sold on Amazon?"
+
+*Note: This section is modeled after a tutorial developed in Introduction to Modern Statistics.*
+
+# 1: Build Your Own Scatter Plot and Model
+
+***Everything you do below is something you did on the previous tutorial. Therefore, copy and paste is your friend!***
+
+## 1.1: Learn about the Data
+
+```{r textbook data}
+?textbooks
+glimpse(textbooks)
+```
+
+## 1.2: Build the scatter plot with the linear model included
+
+Before you dive into the coding, you may want to draw a quick sketch of the plot you want to create so you know which variables go on which axis. You can do this on paper, your iPad, or the board. Tip: Amazon_new will be the predictor variable.
+
+```{r textbook viz}
+
+
+```
+
+## 1.3: Generate the equation of the least squares regression line.
+
+```{r the equation}
+
+
+```
+
+## 1.4: Generate the correlation coefficient and r-squared
+
+```{r cor}
+textbooks %>%
+  summarise(
+    r = cor(OUTCOME, PREDICTOR)
+  ) |>
+    mutate(
+    r_squared = r^2
+  )
+```
+
+## 1.5: Using what you just calculated, describe the relationship between prices of textbooks on Amazon and the UCLA book store. In your answer, you should reference the context, direction, form, and strength. Your description should inclue the slope and the R-squared values!
+
+## Sources:
+
+<https://openintro-ims.netlify.app/model-slr.html> <https://openintro.shinyapps.io/ims-03-model-04/#section-data-set-up>
