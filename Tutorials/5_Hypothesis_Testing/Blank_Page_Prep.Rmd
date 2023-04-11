@@ -1,0 +1,61 @@
+---
+title: "12 Assessment Prep: Hypothesis Testing "
+author: "YOUR NAME"
+output: 
+  github_document:
+    toc: true
+    toc_depth: 3
+---
+
+# Overview
+
+This activity provides you the opportunity to assess your level of understanding so you can best plan your final preparations for the upcoming assessment on Hypothesis Testing.
+
+Below are the packages and the datasets you will need to complete this assignment. Feel free to reference your study guide and the course module related to this material.
+
+***Start by changing YOUR NAME to your name. This can be found at the top of this document next to author.***
+
+```{r packages, echo=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(infer)
+library(janitor)
+library(knitr)
+library(kableExtra)
+library(gghighlight)
+```
+
+# The Data
+
+### ***Dataset #1: Baseball*** 
+
+Below is a fictional data frame. It is meant to represent a random sample of 100 baseball players from the 2022 seasons and the speed (mph) that the ball leaves their bat, which is also knows as the exit velocity.
+
+Use this data frame to assess a friend's claim that batters in 2022 are hitting the ball harder than in 2021. The average exit velocity in 2021 was 88.8 mph.
+
+```{r creating the data}
+set.seed(1915)
+
+#creating the fake data
+n <- 100
+mean_exit_velo <- 90
+std_dev_exit_velo <- 5
+
+random_data <- rnorm(n, mean = mean_exit_velo, sd = std_dev_exit_velo)
+
+#The data frame you will use.
+baseball <- tibble(observation = 1:n, exit_velocity = random_data)
+
+```
+
+#### Your work on the baseball dataset:
+
+### ***Dataset #2:*** **Side effects of Avandia.** 
+
+Rosiglitazone is the active ingredient in the controversial type 2 diabetes medicine Avandia and has been linked to an increased risk of serious cardiovascular problems such as stroke, heart failure, and death. A common alternative treatment is Pioglitazone, the active ingredient in a diabetes medicine called Actos. In a nationwide retrospective observational study of 227,571 Medicare beneficiaries aged 65 years or older, it was found that 2,593 of the 67,593 patients using Rosiglitazone and 5,386 of the 159,978 using Pioglitazone had serious cardiovascular problems. This example comes from [our textbook chapter 11, exercise 7.](https://openintro-ims.netlify.app/foundations-randomization.html#chp11-exercises)
+
+```{r drug data}
+ avandia
+```
+
+#### Your work on the Avandia dataset:

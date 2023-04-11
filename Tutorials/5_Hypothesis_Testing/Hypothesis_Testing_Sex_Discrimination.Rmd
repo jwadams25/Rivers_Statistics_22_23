@@ -1,0 +1,177 @@
+---
+title: "10 Hypothesis Testing"
+author: "YOUR NAME"
+output: 
+  github_document:
+    toc: true
+    toc_depth: 3
+---
+
+# Overview
+
+This tutorial will help you begin the processes of building your understanding of hypothesis testing. Hypothesis testing is another example of a statistical tool that is used to assess a claim about a population.
+
+This tutorial was built using the contents in Chapter 11 titled Hypothesis Testing with Randomization in Introduction to Modern Statistics. <https://openintro-ims.netlify.app/foundations-randomization.html>
+
+You will complete this tutorial partially with your group and synchronously with the whole class.
+
+***Start by changing YOUR NAME to your name. This can be found at the top of this document next to author.***
+
+```{r packages, echo=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(infer)
+library(janitor)
+library(knitr)
+library(kableExtra)
+library(gghighlight)
+```
+
+# Goals
+
+***By the end of this tutorial you should be able to...***
+
+1.  Ask a statistical question that in terms of hypotheses.
+
+2.  Model the randomness that would occur if the null hypothesis was true.
+
+3.  Create a dot plot with the randomized outcomes.
+
+4.  Use the dot plot to make a conclusion on whether or not to reject or fail to reject the null hypothesis.
+
+# 1: The Case Study and Research Question:
+
+For this tutorial, we will utilize a case study referenced in our textbook about sex discrimination and promotions. For information about the study, please reference this page - <https://openintro-ims.netlify.app/foundations-randomization.html#caseStudySexDiscrimination>
+
+***Research Question: "Are individuals who identify as female discriminated against in promotion decisions made by their managers who identify as male?"***
+
+# 2: Summary Results from the Study
+
+After the study was conducted, the researchers created a contingency table to summarize how many males and females got promoted.
+
+### 2: Tasks and Questions
+
+a.  Refresh your understanding of the dataset.
+
+    How many variables?
+
+    How many observations?
+
+    ```{r the data}
+    glimpse(sex_discrimination)
+    ```
+
+b.  Run the code chunk below to view the table.
+
+```{r summary table from study}
+
+sex_discrimination |> 
+  count(decision, sex) |> 
+  pivot_wider(names_from = decision, values_from = n) |>
+  adorn_totals(where = c("col", "row")) |> 
+  kbl(linesep = "", booktabs = TRUE, caption = "Summary Results from the sex descrimination study.") |>
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                latex_options = c("striped", "hold_position"), full_width = FALSE) |>
+  add_header_above(c(" " = 1, "decision" = 2, " " = 1)) |>
+  column_spec(1:4, width = "7em")
+
+```
+
+b.  How many females were included in this study?
+
+c.  How many males were included in this study?
+
+d.  What proportion of males were not promoted?
+
+e.  What proportion of females were not promoted?
+
+f.  What is the difference between the two proportions you just calculated? (To prepare for later questions, compute this difference by doing males - females)
+
+g.  At this point, can you make and support the claim that "Women are discriminated when up for promotion"? Explain.
+
+# 3: The Hypotheses
+
+### 3: Tasks and Questions
+
+a\. Write the null and alternative hypotheses
+
+Null Hypothesis:
+
+Alternative Hypothesis:
+
+# 4: Randomization.
+
+As you may remember from the card sorting activity, the goal of what we will be doing is to see if we randomly distribute promoted and not promoted files to the male and female piles, is the difference in proportions of those not promoted similar to what you calculated in part f in section 2. In other words, is the answer you got for part f a likely outcome when promotions are split randomly between the male and female groups.
+
+# 5: Let the computer do the simulation.
+
+### 5: Tasks and Questions
+
+a\. In the code below, set the seed by replacing NUMBER.
+
+b\. In the code below change RESPONSE_VARIABLE
+
+c\. In the code below change EXPLANATORY_VARIABLE
+
+d\. In the code below change PROMOTED_OR_NOT to promoted. (Keep the quotes)
+
+e\. Before running the code, how many reps is the computer going to run for you?
+
+f\. Before running the code, what type of visualization is it going to create?
+
+g\. In the code below, on the the gghighlight line change DIFF_PROPORTION_F to the difference in proportion you calculated in part f of section 2.
+
+```{r sex-rand-dot-plot}
+#set the seed
+set.seed(NUMBER)
+
+#run the randomization
+random_test_sex_dis <- sex_discrimination |>
+                        specify(RESPONSE_VARIABLE ~ EXPLANATORY_VARIABLE, 
+                          success = "PROMOTED_OR_NOT") |>
+                        hypothesize(null = "independence") |>
+                        generate(reps = 100, type = "permute") |>
+                        calculate(stat = "diff in props", 
+                                  order = c("male", "female"))
+  
+#visualize the randomization data
+random_test_sex_dis |>
+  ggplot(aes(x = stat)) +
+  geom_dotplot(binwidth = 0.01) +
+  gghighlight(stat <= DIFF_PROPORTION_F) +
+  theme(
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_blank()
+  ) +
+  labs(
+    x = "Differences in promotion rates (male - female) across many shuffles",
+    y = ""
+  )
+```
+
+# 6: Making a Conclusion.
+
+Here you will decide whether you will reject or fail to reject the null hypothesis.
+
+### 6: Tasks and Questions
+
+a.  What was the difference in proportion of males promoted and females promoted from the original study. (hint: See section 2)
+
+b.  Using the dot plot you just created, count and record how many dots are greater than or equal the 0.292?
+
+c.  You can also use the computer to generate the p_value from randomization data. In the code below, change RANDOMIZATION_DATA to the name of the randomization data you created in the previous section. Also, change p_hat_DIFFERENCE to the difference in proportion of males and females promoted *in the sample data (same answer as part a)*.
+
+    ```{r find p_value}
+    RANDOMIZATION_DATA |>
+      summarise(
+        p_value_right = mean(stat >= p_hat_DIFFERENCE)
+      )
+    ```
+
+d.  Based on your answer to part b and c, is the difference in the rate of not be promoted in the study likely to occur if the the promotions were to be distributed randomly to males and females?
+
+e.  Therefore, would you reject or fail to reject the null hypothesis that the difference in proportion between males and females not being promoted is equal to zero.
+
+f.  Is there **convincing statistical evidence** that individuals who identify as female are discriminated against in promotion decisions made by their managers who identify as male?
+
+# 
