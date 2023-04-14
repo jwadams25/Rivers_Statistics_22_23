@@ -50,7 +50,7 @@ library(skimr)
 gray_dice <- c(3, 4, 3, 4, 4, 1, 4, 4, 2, 2, 2, 3, 3, 2, 4, 4, 2, 1, 2, 2, 3, 4, 5, 6, 4, 2, 6, 1, 1, 3, 2, 3, 2, 4, 3, 1, 6, 1, 3, 2, 4, 2, 6, 2, 3, 1, 4, 4, 2, 6)
 ```
 
-#### Convert the rolls into a data frame and the numbers into characterse rolls
+#### Convert the rolls into a data frame and the numbers into characters
 
 ``` r
 gray_dice_data <- data.frame(
@@ -105,7 +105,7 @@ chisq_test(gray_dice_data,
 magenta_dice <- c(4, 2, 2, 6, 3, 5, 4, 4, 4, 3, 1, 6, 6, 4, 6, 5, 3, 6, 4, 4, 6, 5, 5, 5, 4, 4, 2, 5, 5, 2, 4, 5, 5, 6, 5, 5, 5, 2, 2, 1, 2, 4, 2, 3, 3, 1, 1, 3, 1, 4)
 ```
 
-#### Convert the rolls into a data frame and the numbers into characterse rolls
+#### Convert the rolls into a data frame and the numbers into characters
 
 ``` r
 magenta_dice_data <- data.frame(
@@ -157,7 +157,7 @@ chisq_test(magenta_dice_data,
 greengold_dice <- c(5,1,3,6,1,2,4,5,1,2,2,3,4,5,4,6,5,1,1,4,2,1,4,4,3,5,2,6,3,5,1,3,4,4,2,1,5,1,3,1,2,4,1,6,1,3,4,1,2,4)
 ```
 
-#### Convert the rolls into a data frame and the numbers into characterse rolls
+#### Convert the rolls into a data frame and the numbers into characters
 
 ``` r
 green_gold_dice_data <- data.frame(
@@ -210,7 +210,7 @@ chisq_test(green_gold_dice_data,
 green_with_gold_dots <- c(5, 3, 4, 1, 5, 2, 1, 5, 2, 1, 5, 2, 2, 1, 4, 5, 5, 3, 4, 2, 6, 2, 2, 2, 6, 3, 5, 5, 3, 2, 6, 1, 2, 1, 4, 5, 4, 5, 1, 2, 2, 5, 1, 2, 6, 4, 6, 5, 2, 4)
 ```
 
-#### Convert the rolls into a data frame and the numbers into characterse rolls
+#### Convert the rolls into a data frame and the numbers into characters
 
 ``` r
 green_gold_dice_data_2 <- data.frame(
@@ -263,7 +263,7 @@ chisq_test(green_gold_dice_data_2,
 green_dice_black_dots <- c(2,3,5,4,2,4,2,2,3,2,1,6,4,4,6,3,5,5,4,5,5,5,2,4,5,4,3,6,3,4,1,3,1,1,6,6,2,2,4,5,5,1,5,5,3,2,3,6,3,4)
 ```
 
-#### Convert the rolls into a data frame and the numbers into characterse rolls
+#### Convert the rolls into a data frame and the numbers into characters
 
 ``` r
 green_black_dice_data <- data.frame(
@@ -316,7 +316,7 @@ chisq_test(green_black_dice_data,
 YELLOW <- c(6,4,2,2,5,2,1,4,1,6,2,4,2,6,4,1,5,5,1,4,2,5,6,1,3,2,1,2,3,4,1,2,5,1,3,6,3,6,3,1,6,6,2,1,6,5,6,4,5,2)
 ```
 
-#### Convert the rolls into a data frame and the numbers into characterse rolls
+#### Convert the rolls into a data frame and the numbers into characters
 
 ``` r
 yellow_dice_data <- data.frame(
